@@ -22,10 +22,81 @@ message LoginResponse {
   string err = 2;
 }
 
+message CreateUserRequest {
+  string id = 1;
+  string email = 2;
+  string password = 3;
+  string firstName = 4;
+  string lastName = 5;
+  string companyName = 6;
+  string phone = 7;
+  string credit = 8;
+  int64 roleId = 9;
+}
+
+message CreateUserResponse {
+  string id = 1;
+  string mesg = 2;
+}
+
+message CreateRoleRequest {
+  string roleName = 1;
+}
+
+message ListRoleRequest {}
+
+message ListRoleResponse {
+  int64 id = 1;
+  string roleName = 2;
+}
+
+message CreateRoleResponse {
+  int32 id = 1;
+  string roleName = 2;
+  string mesg = 3;
+}
+
+message CreateClientRequest {
+
+}
+
+message CreateClientResponse {
+  string clientId = 1;
+  string clientSecret = 2;
+  string apiId = 3;
+}
+
 service UAAService {
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/api/v1/uaa/login"
+      body: "*"
+    };
+  }
+
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/uaa/user"
+      body: "*"
+    };
+  }
+
+  rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/uaa/role"
+      body: "*"
+    };
+  }
+
+  rpc ListRole(ListRoleRequest) returns (ListRoleResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/uaa/role"
+    };
+  }
+
+  rpc CreateClient(CreateClientRequest) returns (CreateClientResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/uaa/role"
       body: "*"
     };
   }
