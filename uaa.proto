@@ -94,13 +94,13 @@ service UAAService {
 
   rpc ListRole(ListRoleRequest) returns (ListRoleResponse) {
     option (google.api.http) = {
-      get: "/api/v1/uaa/role"
+      get: "/api/v1/uaa/roles"
     };
   }
 
   rpc CreateClient(CreateClientRequest) returns (CreateClientResponse) {
     option (google.api.http) = {
-      post: "/api/v1/uaa/role"
+      post: "/api/v1/uaa/client"
       body: "*"
     };
   }
