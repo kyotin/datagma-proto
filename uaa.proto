@@ -10,6 +10,12 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     version: "1.0";
   };
+  security: {
+    security_requirement: {
+      key: "Authorization";
+      value: {};
+    }
+  };
 };
 
 message LoginRequest {
@@ -70,6 +76,14 @@ message CreateClientResponse {
   string apiId = 3;
 }
 
+message IsAPIValidRequest {
+  string apiId = 1;
+}
+
+message IsAPIValieResponse {
+  bool valid = 1;
+}
+
 service UAAService {
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
@@ -102,6 +116,14 @@ service UAAService {
     option (google.api.http) = {
       post: "/api/v1/uaa/client"
       body: "*"
+    };
+  }
+
+  rpc IsAPIValid(IsAPIValidRequest) returns (IsAPIValieResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/uaa/api/valid"
+      body: "*"
+
     };
   }
 }
