@@ -1,0 +1,74 @@
+syntax = "proto3";
+package uaa;
+option go_package = "internal/grpc";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  schemes: HTTPS;
+  info: {
+    version: "1.0";
+  };
+  security: {
+    security_requirement: {
+      key: "Authorization";
+      value: {};
+    }
+  };
+};
+
+message DeductCreditRequest {
+  string apiId = 1;
+  int64 amount = 2;
+}
+
+message DeductCreditResponse {
+  string clientId = 1;
+  int64 existedCredit = 2;
+  int64 deductAmount = 3;
+  string message = 4;
+}
+
+message GetCreditRequest {
+
+}
+
+message GetCreditResponse {
+  string userId = 1;
+  int64 existedCredit = 2;
+  string message = 3;
+}
+
+message AddCreditRequest {
+  int64 amount = 1;
+}
+
+message AddCreditResponse {
+  string userId = 1;
+  int64 existedCredit = 2;
+  int64 addAmount = 3;
+  string message = 4;
+}
+
+service CreditManagement {
+  rpc Deduct(DeductCreditRequest) returns (DeductCreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/deduct"
+      body: "*"
+    };
+  }
+
+  rpc GetCredit(GetCreditRequest) returns (GetCreditResponse) {
+    option (google.api.http) = {
+      get: "/api/credit/v1/mine"
+    };
+  }
+
+  rpc AddCredit(AddCreditRequest) returns (AddCreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/add"
+      body: "*"
+    };
+  }
+}
