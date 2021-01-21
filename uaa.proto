@@ -80,8 +80,9 @@ message IsAPIValidRequest {
   string apiId = 1;
 }
 
-message IsAPIValieResponse {
+message IsAPIValidResponse {
   bool valid = 1;
+  string clientId = 2;
 }
 
 service UAAService {
@@ -119,7 +120,7 @@ service UAAService {
     };
   }
 
-  rpc IsAPIValid(IsAPIValidRequest) returns (IsAPIValieResponse) {
+  rpc IsAPIValid(IsAPIValidRequest) returns (IsAPIValidResponse) {
     option (google.api.http) = {
       post: "/api/v1/uaa/api/valid"
       body: "*"
