@@ -88,43 +88,42 @@ message IsAPIValidResponse {
 service UAAService {
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
-      post: "/api/v1/uaa/login"
+      post: "/api/uaa/v1/login"
       body: "*"
     };
   }
 
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
     option (google.api.http) = {
-      post: "/api/v1/uaa/user"
+      post: "/api/uaa/v1/user"
       body: "*"
     };
   }
 
   rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse) {
     option (google.api.http) = {
-      post: "/api/v1/uaa/role"
+      post: "/api/uaa/v1/role"
       body: "*"
     };
   }
 
   rpc ListRole(ListRoleRequest) returns (ListRoleResponse) {
     option (google.api.http) = {
-      get: "/api/v1/uaa/roles"
+      get: "/api/uaa/v1/roles"
     };
   }
 
   rpc CreateClient(CreateClientRequest) returns (CreateClientResponse) {
     option (google.api.http) = {
-      post: "/api/v1/uaa/client"
+      post: "/api/uaa/v1/client"
       body: "*"
     };
   }
 
   rpc IsAPIValid(IsAPIValidRequest) returns (IsAPIValidResponse) {
     option (google.api.http) = {
-      post: "/api/v1/uaa/api/valid"
+      post: "/api/uaa/v1/api_id/valid"
       body: "*"
-
     };
   }
 }
