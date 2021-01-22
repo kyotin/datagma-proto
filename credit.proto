@@ -28,6 +28,7 @@ message DeductCreditResponse {
   int64 existedCredit = 2;
   int64 deductAmount = 3;
   string message = 4;
+  bool success = 5;
 }
 
 message GetCreditRequest {
@@ -38,6 +39,7 @@ message GetCreditResponse {
   string userId = 1;
   int64 existedCredit = 2;
   string message = 3;
+  bool success = 4;
 }
 
 message AddCreditRequest {
@@ -50,6 +52,20 @@ message AddCreditResponse {
   int64 existedCredit = 2;
   int64 addAmount = 3;
   string message = 4;
+  bool success =5;
+}
+
+message UpdateCreditRequest {
+  string userId = 1;
+  int64 amount = 2;
+}
+
+message UpdateCreditResponse {
+  string userId = 1;
+  int64 existedCredit = 2;
+  int64 addAmount = 3;
+  string message = 4;
+  bool success =5;
 }
 
 service CreditManagement {
@@ -69,6 +85,13 @@ service CreditManagement {
   rpc AddCredit(AddCreditRequest) returns (AddCreditResponse) {
     option (google.api.http) = {
       post: "/api/credit/v1/add"
+      body: "*"
+    };
+  }
+
+  rpc UpdateCredit(UpdateCreditRequest) returns (UpdateCreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/update"
       body: "*"
     };
   }
