@@ -6,9 +6,20 @@ import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  schemes: [HTTP, HTTPS];
+  schemes: HTTP;
+  schemes: HTTPS;
   info: {
     version: "1.0";
+  };
+  security_definitions: {
+    security: {
+      key: "Authorization";
+      value: {
+        type: TYPE_API_KEY;
+        in: IN_HEADER;
+        name: "Authorization";
+      }
+    }
   };
   security: {
     security_requirement: {
@@ -104,7 +115,7 @@ message DeleteUserResponse {
 
 service UAAService {
 
-  // API(s) For Normal User
+  // Login
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/login"
@@ -112,7 +123,7 @@ service UAAService {
     };
   }
 
-  // API(s) For Both Normal User vs Admin
+  // Create New User
   rpc CreateUser(UserRequest) returns (UserResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/user"
@@ -120,6 +131,7 @@ service UAAService {
     };
   }
 
+  // Update Existed User (need input all field)
   rpc UpdateUser(UserRequest) returns (UserResponse) {
     option (google.api.http) = {
       put: "/api/uaa/v1/user"
@@ -127,6 +139,7 @@ service UAAService {
     };
   }
 
+  // Change Password
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/passwd"
@@ -134,26 +147,29 @@ service UAAService {
     };
   }
 
+  // List All Users
   rpc ListAllUser(ListAllUserRequest) returns (ListAllUserResponse) {
     option (google.api.http) = {
       get: "/api/uaa/v1/users"
     };
   }
 
+  // Delete User (Actually mark user inactive)
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
     option (google.api.http) = {
-      post: "/api/uaa/v1/user"
+      post: "/api/uaa/v1/drop_user"
       body: "*"
     };
   }
 
-  // API(s) For Public
+  // List Roles In System
   rpc ListRole(ListRoleRequest) returns (ListRoleResponse) {
     option (google.api.http) = {
       get: "/api/uaa/v1/roles"
     };
   }
 
+  // Check API valid or not
   rpc IsAPIValid(IsAPIValidRequest) returns (IsAPIValidResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/api_id/valid"
