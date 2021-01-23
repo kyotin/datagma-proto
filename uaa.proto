@@ -142,7 +142,7 @@ service UAAService {
 
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
     option (google.api.http) = {
-      delete: "/api/uaa/v1/user"
+      post: "/api/uaa/v1/user"
       body: "*"
     };
   }
