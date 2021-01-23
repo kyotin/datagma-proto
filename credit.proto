@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  schemes: HTTPS;
+  schemes: [HTTP, HTTPS];
   info: {
     version: "1.0";
   };
@@ -28,6 +28,7 @@ message DeductCreditResponse {
   int64 existedCredit = 2;
   int64 deductAmount = 3;
   string message = 4;
+  bool success = 5;
 }
 
 message GetCreditRequest {
@@ -38,10 +39,13 @@ message GetCreditResponse {
   string userId = 1;
   int64 existedCredit = 2;
   string message = 3;
+  bool success = 4;
 }
 
 message AddCreditRequest {
-  int64 amount = 1;
+  string userId = 1;
+  string apiId = 2;
+  int64 amount = 3;
 }
 
 message AddCreditResponse {
@@ -49,6 +53,20 @@ message AddCreditResponse {
   int64 existedCredit = 2;
   int64 addAmount = 3;
   string message = 4;
+  bool success =5;
+}
+
+message UpdateCreditRequest {
+  string userId = 1;
+  int64 amount = 2;
+}
+
+message UpdateCreditResponse {
+  string userId = 1;
+  int64 existedCredit = 2;
+  int64 addAmount = 3;
+  string message = 4;
+  bool success =5;
 }
 
 service CreditManagement {
@@ -68,6 +86,13 @@ service CreditManagement {
   rpc AddCredit(AddCreditRequest) returns (AddCreditResponse) {
     option (google.api.http) = {
       post: "/api/credit/v1/add"
+      body: "*"
+    };
+  }
+
+  rpc UpdateCredit(UpdateCreditRequest) returns (UpdateCreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/update"
       body: "*"
     };
   }
