@@ -35,7 +35,7 @@ message DeductCreditRequest {
 
 message DeductCreditResponse {
   string apiId = 1;
-  int64 existedCredit = 2;
+  int64 currentCredit = 2;
   int64 deductAmount = 3;
 }
 
@@ -47,7 +47,7 @@ message GetCreditRequest {
 message GetCreditResponse {
   string email = 1;
   string apiId = 2;
-  int64 existedCredit = 3;
+  int64 currentCredit = 3;
 }
 
 message CreditRequest {
@@ -59,7 +59,7 @@ message CreditRequest {
 message CreditResponse {
   string email = 1;
   string apiId = 2;
-  int64 existedCredit = 3;
+  int64 currentCredit = 3;
   int64 addAmount = 4;
 }
 
