@@ -10,6 +10,16 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     version: "1.0";
   };
+  security_definitions: {
+    security: {
+      key: "Authorization";
+      value: {
+        type: TYPE_API_KEY;
+        in: IN_HEADER;
+        name: "Authorization";
+      }
+    }
+  };
   security: {
     security_requirement: {
       key: "Authorization";
@@ -24,52 +34,60 @@ message DeductCreditRequest {
 }
 
 message DeductCreditResponse {
-  string clientId = 1;
+  string apiId = 1;
   int64 existedCredit = 2;
   int64 deductAmount = 3;
-  string message = 4;
-  bool success = 5;
 }
 
 message GetCreditRequest {
-
+  string email = 1;
+  string apiId = 2;
 }
 
 message GetCreditResponse {
-  string userId = 1;
-  int64 existedCredit = 2;
-  string message = 3;
-  bool success = 4;
+  string email = 1;
+  string apiId = 2;
+  int64 existedCredit = 3;
 }
 
-message AddCreditRequest {
-  string userId = 1;
+message CreditRequest {
+  string email = 1;
   string apiId = 2;
   int64 amount = 3;
 }
 
-message AddCreditResponse {
-  string userId = 1;
-  int64 existedCredit = 2;
-  int64 addAmount = 3;
-  string message = 4;
-  bool success =5;
-}
-
-message UpdateCreditRequest {
-  string userId = 1;
-  int64 amount = 2;
-}
-
-message UpdateCreditResponse {
-  string userId = 1;
-  int64 existedCredit = 2;
-  int64 addAmount = 3;
-  string message = 4;
-  bool success =5;
+message CreditResponse {
+  string email = 1;
+  string apiId = 2;
+  int64 existedCredit = 3;
+  int64 addAmount = 4;
 }
 
 service CreditManagement {
+  // Create New Credit, this method will be called when: create user (uaa)
+  rpc NewCredit(CreditRequest) returns (CreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/new"
+      body: "*"
+    };
+  }
+
+  // Update Credit For User
+  rpc UpdateCredit(CreditRequest) returns (CreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/update"
+      body: "*"
+    };
+  }
+
+  // Get Credit
+  rpc GetCredit(GetCreditRequest) returns (GetCreditResponse) {
+    option (google.api.http) = {
+      get: "/api/credit/v1/mine"
+    };
+  }
+
+  // Deduct Credit Of A User Via api_id
   rpc Deduct(DeductCreditRequest) returns (DeductCreditResponse) {
     option (google.api.http) = {
       post: "/api/credit/v1/deduct"
@@ -77,23 +95,4 @@ service CreditManagement {
     };
   }
 
-  rpc GetCredit(GetCreditRequest) returns (GetCreditResponse) {
-    option (google.api.http) = {
-      get: "/api/credit/v1/mine"
-    };
-  }
-
-  rpc AddCredit(AddCreditRequest) returns (AddCreditResponse) {
-    option (google.api.http) = {
-      post: "/api/credit/v1/add"
-      body: "*"
-    };
-  }
-
-  rpc UpdateCredit(UpdateCreditRequest) returns (UpdateCreditResponse) {
-    option (google.api.http) = {
-      post: "/api/credit/v1/update"
-      body: "*"
-    };
-  }
 }
