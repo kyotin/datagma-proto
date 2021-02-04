@@ -36,12 +36,27 @@ message GetRoleFromJobTitleResponse {
   string role = 1;
 }
 
+message GetSeniorityFromJobTitleRequest {
+  string jobTitle = 1;
+}
+
+message GetSeniorityFromJobTitleResponse {
+  string seniority = 1;
+}
+
 
 service Analytic {
   // From job title, we extract role based on files Razot sent
   rpc GetRoleFromJobTitle(GetRoleFromJobTitleRequest) returns (GetRoleFromJobTitleResponse) {
     option (google.api.http) = {
       get: "/api/analytic/v1/extractRole"
+    };
+  }
+
+  // From job title, we extract seniority based on files Razot sent
+  rpc GetSeniorityFromJobTitle(GetSeniorityFromJobTitleRequest) returns (GetSeniorityFromJobTitleResponse) {
+    option (google.api.http) = {
+      get: "/api/analytic/v1/extractSeniority"
     };
   }
 }
