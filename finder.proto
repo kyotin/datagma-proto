@@ -1,0 +1,65 @@
+syntax = "proto3";
+package uaa;
+option go_package = "internal/grpc";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  schemes: [HTTP, HTTPS];
+  info: {
+    version: "1.0";
+  };
+  security_definitions: {
+    security: {
+      key: "Authorization";
+      value: {
+        type: TYPE_API_KEY;
+        in: IN_HEADER;
+        name: "Authorization";
+      }
+    }
+  };
+  security: {
+    security_requirement: {
+      key: "Authorization";
+      value: {};
+    }
+  };
+};
+
+message GetPhoneNumberRequest {
+  string domain = 1;
+  string personName = 2;
+  string apiId = 3;
+}
+
+message GetPhoneNumberResponse {
+  string phone = 1;
+}
+
+message GetEmailRequest {
+  string companyName = 1;
+  string personName = 2;
+  string apiId = 3;
+}
+
+message GetEmailResponse {
+  string resp = 1;
+}
+
+service Finder {
+  // Find phone number based on domain, person's name. Deduct 20 credit per call per api
+  rpc GetPhoneNumber(GetPhoneNumberRequest) returns (GetPhoneNumberResponse) {
+    option (google.api.http) = {
+      get: "/api/finder/v1/phone"
+    };
+  }
+
+  // Find email based on domain, person's name. Deduct 10 credit per call per api
+  rpc GetEmail(GetEmailRequest) returns (GetEmailResponse) {
+    option (google.api.http) = {
+      get: "/api/finder/v1/email"
+    };
+  }
+}
