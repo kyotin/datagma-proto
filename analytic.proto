@@ -44,6 +44,13 @@ message GetSeniorityFromJobTitleResponse {
   string seniority = 1;
 }
 
+message GetGenderFromNameRequest {
+  string name = 1;
+}
+
+message GetGenderFromNameResponse {
+  string gender = 1;
+}
 
 service Analytic {
   // From job title, we extract role based on files Razot sent
@@ -57,6 +64,13 @@ service Analytic {
   rpc GetSeniorityFromJobTitle(GetSeniorityFromJobTitleRequest) returns (GetSeniorityFromJobTitleResponse) {
     option (google.api.http) = {
       get: "/api/analytic/v1/extractSeniority"
+    };
+  }
+
+  // Extract gender from name (tested and work with first name only)
+  rpc GetGenderFromName(GetGenderFromNameRequest) returns (GetGenderFromNameResponse) {
+    option (google.api.http) = {
+      get: "/api/analytic/v1/extractGender"
     };
   }
 }
