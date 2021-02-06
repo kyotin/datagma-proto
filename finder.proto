@@ -39,7 +39,7 @@ message Phone {
 }
 
 message GetPhoneNumberResponse {
-  repeated Phone workPhone = 1;
+  repeated Phone workPhones = 1;
   repeated Phone mobiles = 2;
 }
 
