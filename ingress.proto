@@ -289,6 +289,14 @@ message PremiumPerson {
   repeated Group groups = 15;
 }
 
+message ArrayPremiumUser {
+  repeated PremiumPerson data = 1;
+}
+
+message ArrayPremiumCompany {
+  repeated PremiumCompany data = 1;
+}
+
 message Empty {
 
 }
@@ -301,8 +309,8 @@ service IngressService {
     };
   }
 
-  // Handle luminati company callback
-  rpc HandlePersonCallback(PremiumPerson) returns (Empty){
+  // Handle luminati person callback
+  rpc HandlePersonCallback(ArrayPremiumUser) returns (Empty){
     option (google.api.http) = {
       post: "/api/ingress/v1/person/cb"
       body: "*"
@@ -310,7 +318,7 @@ service IngressService {
   }
 
   // Handle luminati company callback
-  rpc HandleCompanyCallback(PremiumCompany) returns (Empty){
+  rpc HandleCompanyCallback(ArrayPremiumCompany) returns (Empty){
     option (google.api.http) = {
       post: "/api/ingress/v1/company/cb"
       body: "*"
