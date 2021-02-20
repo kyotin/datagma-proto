@@ -305,6 +305,7 @@ service IngressService {
   rpc HandlePersonCallback(PremiumPerson) returns (Empty){
     option (google.api.http) = {
       post: "/api/ingress/v1/person/cb"
+      body: "*"
     };
   }
 
@@ -312,6 +313,7 @@ service IngressService {
   rpc HandleCompanyCallback(PremiumCompany) returns (Empty){
     option (google.api.http) = {
       post: "/api/ingress/v1/company/cb"
+      body: "*"
     };
   }
 }
