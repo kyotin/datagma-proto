@@ -167,7 +167,7 @@ message PremiumCompany {
   message DataItem {
     string url = 1;
     string name = 2;
-    string followers = 3;
+    int32 followers = 3;
     string employeesAmountInLinkedin = 4;
     string about = 5;
     string location = 6;
@@ -289,11 +289,29 @@ message PremiumPerson {
   repeated Group groups = 15;
 }
 
+message Empty {
+
+}
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
     option (google.api.http) = {
       get: "/api/ingress/v1/full"
+    };
+  }
+
+  // Handle luminati company callback
+  rpc HandlePersonCallback(PremiumPerson) returns (Empty){
+    option (google.api.http) = {
+      post: "/api/ingress/v1/person/cb"
+    };
+  }
+
+  // Handle luminati company callback
+  rpc HandleCompanyCallback(PremiumCompany) returns (Empty){
+    option (google.api.http) = {
+      post: "/api/ingress/v1/company/cb"
     };
   }
 }
