@@ -1,0 +1,299 @@
+syntax = "proto3";
+package ingress;
+option go_package = "internal/grpc";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "external/datagma-proto/finder.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  schemes: HTTP;
+  schemes: HTTPS;
+  info: {
+    version: "1.0";
+  };
+  security_definitions: {
+    security: {
+      key: "Authorization";
+      value: {
+        type: TYPE_API_KEY;
+        in: IN_HEADER;
+        name: "Authorization";
+      }
+    }
+  };
+  security: {
+    security_requirement: {
+      key: "Authorization";
+      value: {};
+    }
+  };
+};
+
+message FullApiRequest {
+    string data = 1;
+    string apiId = 2;
+    bool personFull = 3;
+    bool companyBasic = 4;
+    bool companyPremium = 5;
+    bool companyFull = 6;
+    bool phone = 7;
+}
+
+message FullApiResponse {
+  finder.GetPhoneNumberResponse phone = 1;
+  Person person = 2;
+  Company company = 3;
+}
+
+message Company {
+  BasicCompany basicCompany = 1;
+  PremiumCompany premiumCompany = 2;
+  FullCompany fullCompany = 3;
+}
+
+// model.paper
+message BasicCompany {
+  string siren = 1;
+  string nom_entreprise = 2;
+  string code_naf = 3;
+  string libelle_code_naf = 4;
+  string domaine_activite = 6;
+  string objet_social = 7;
+  string date_creation_formate = 8;
+  bool entreprise_cessee = 9;
+  string effectif = 10;
+  string numero_tva_intracommunautaire = 11;
+
+  message Seige {
+    string siret = 1;
+    string adresse_ligne_1 = 2;
+    string code_postal = 3;
+    string ville = 4;
+  }
+  Seige siege = 12;
+
+  message Representant {
+    string nom_complet = 1;
+    string date_de_naissance_formate = 2;
+    int64 age = 3;
+  }
+  repeated Representant representants = 13;
+}
+
+// model.crunchbase
+message FullCompany {
+  message Properties {
+    string revenue_range = 1;
+    string  title = 2;
+    string short_description = 3;
+  }
+  Properties properties = 1;
+
+  message Cards {
+    message FundingRoundsSummary {
+      message FundingTotal {
+          float value_usd = 1;
+      }
+      FundingTotal funding_total = 1;
+      string       last_funding_type = 2;
+      string       last_funding_at = 3;
+    }
+    FundingRoundsSummary funding_rounds_summary = 1;
+
+    message SemrushRankHeadline {
+        int64 semrush_visits_latest_month = 1;
+        float semrush_visits_mom_pct = 2;
+    }
+    SemrushRankHeadline semrush_rank_headline = 2;
+
+    message AberdeenSummary {
+      message AberdeenSiteItSpend {
+       float value_usd = 1;
+      }
+      AberdeenSiteItSpend aberdeen_site_it_spend = 1;
+    }
+    AberdeenSummary aberdeen_summary = 3;
+
+    message OverviewCompanyFields{
+      string company_type = 1;
+    }
+    OverviewCompanyFields overview_company_fields = 4;
+
+    message OverviewFields {
+      float revenue_range = 1;
+      string num_employees_enum = 2;
+      string last_funding_type = 3;
+      string operating_status = 4;
+
+      message FoundedOn {
+        string value = 1;
+      }
+      FoundedOn founded_on = 5;
+
+      message Category {
+       string value = 1;
+      }
+      repeated Category categories = 6;
+
+      string       legal_name = 7;
+      string       funding_stage = 8;
+    }
+    OverviewFields overview_fields = 9;
+
+    message OverviewFields2  {
+      message Website {
+       string value = 1;
+      }
+      Website            website = 1;
+
+      message CrunchbaseLinkedIn {
+        string value = 1;
+      }
+      CrunchbaseLinkedIn linkedin = 2;
+
+      message Twitter {
+        string value = 1;
+      }
+      Twitter twitter = 3;
+      string contact_email = 4;
+    }
+    OverviewFields2 overview_fields2 = 6;
+  }
+  Cards cards = 2;
+}
+
+message PremiumCompany {
+  message DataItem {
+    string url = 1;
+    string name = 2;
+    string followers = 3;
+    string employeesAmountInLinkedin = 4;
+    string about = 5;
+    string location = 6;
+    message Employee {
+      string img = 1;
+      string title = 2;
+      string subtitle = 3;
+    }
+    repeated Employee employees = 7;
+
+    message Update {
+      string title = 1;
+      string time = 2;
+      string text = 3;
+      string likes_count = 4;
+      string comments_count = 5;
+    }
+    repeated Update updates = 8;
+  }
+
+  repeated DataItem data = 1;
+}
+
+message Person {
+  BasicPerson basic = 1;
+  repeated PremiumPerson data = 2;
+}
+
+message BasicPerson {
+  string name = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string location = 4;
+  string jobTitle = 5;
+  string company = 6;
+  string linkedInUrl = 7;
+  string extractedRole = 8;
+  string extractedSeniority = 9;
+  string extractedGender = 10;
+}
+
+message PremiumPerson {
+  string name = 1;
+  string position = 2;
+
+  message CurrentCompany {
+    string name = 1;
+    string link = 2;
+  }
+  CurrentCompany currentCompany = 3;
+
+  string avatar = 4;
+  string about = 5;
+  string city = 6;
+  string following = 7;
+  string educationsDetails = 8;
+
+  message Post {
+    string image = 1;
+    string title = 2;
+    string attribution = 3;
+  }
+  repeated Post posts = 9;
+
+  message ExperienceWithCompany {
+    string company = 1;
+    string duration = 2;
+    string positions = 3;
+  }
+  message ExperienceOwn {
+    string title = 1;
+    string subtitle = 2;
+    string duration = 3;
+    string location = 4;
+    string description = 5;
+  }
+  message Experience {
+    oneof experience {
+      ExperienceWithCompany experienceWithCompany = 1;
+      ExperienceOwn experienceOwn = 2;
+    }
+  }
+  repeated Experience experiences = 10;
+
+  message Education {
+    string title = 1;
+    string subtitle = 2;
+    string meta = 3;
+  }
+  repeated Education educations = 11;
+
+  message Certification {
+    string title = 1;
+    string subtitle = 2;
+    string meta = 3;
+  }
+  repeated Certification certifications = 12;
+
+  message Course {
+    string title = 1;
+    string subtitle = 2;
+    string meta = 3;
+  }
+  repeated Course courses = 13;
+
+  message Language {
+    string title = 1;
+    string subtitle = 2;
+    string meta = 3;
+  }
+  repeated Language languages = 14;
+
+  message Group {
+    string title = 1;
+    string subtitle = 2;
+    string meta = 3;
+    string img = 4;
+  }
+  repeated Group groups = 15;
+}
+
+service IngressService {
+  // FullApi
+  rpc FullApi(FullApiRequest) returns (FullApiResponse) {
+    option (google.api.http) = {
+      get: "/api/ingress/v1/full"
+    };
+  }
+}

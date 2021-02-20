@@ -1,5 +1,5 @@
 syntax = "proto3";
-package uaa;
+package finder;
 option go_package = "internal/grpc";
 
 import "google/api/annotations.proto";
