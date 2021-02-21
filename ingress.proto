@@ -306,18 +306,8 @@ service IngressService {
   }
 
   // Handle luminati person callback
-  rpc HandlePersonCallback(LuminatiCallback) returns (Empty){
-    option (google.api.http) = {
-      post: "/api/ingress/v1/person/cb"
-      body: "*"
-    };
-  }
+  rpc HandlePersonCallback(LuminatiCallback) returns (Empty){}
 
   // Handle luminati company callback
-  rpc HandleCompanyCallback(LuminatiCallback) returns (Empty){
-    option (google.api.http) = {
-      post: "/api/ingress/v1/company/cb"
-      body: "*"
-    };
-  }
+  rpc HandleCompanyCallback(LuminatiCallback) returns (Empty){}
 }
