@@ -167,7 +167,7 @@ message PremiumCompany {
   message DataItem {
     string url = 1;
     string name = 2;
-    int32 followers = 3;
+    //int32 followers = 3;
     string employeesAmountInLinkedin = 4;
     string about = 5;
     string location = 6;
