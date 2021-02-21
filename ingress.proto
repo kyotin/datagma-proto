@@ -301,6 +301,10 @@ message ArrayPremiumCompany {
   repeated PremiumCompany companies = 1;
 }
 
+message LuminatiCallback {
+  bytes data = 1;
+}
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
@@ -321,6 +325,13 @@ service IngressService {
   rpc HandleCompanyCallback(PremiumCompany) returns (Empty){
     option (google.api.http) = {
       post: "/api/ingress/v1/company/cb"
+      body: "*"
+    };
+  }
+
+  rpc HandleLuminatiCallback(LuminatiCallback) returns (Empty) {
+    option (google.api.http) = {
+      post: "/api/ingress/v1/test"
       body: "*"
     };
   }
