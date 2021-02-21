@@ -293,6 +293,14 @@ message Empty {
 
 }
 
+message ArrayPremiumPerson {
+  repeated PremiumPerson persons = 1;
+}
+
+message ArrayPremiumCompany {
+  repeated PremiumCompany companies = 1;
+}
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
