@@ -222,7 +222,7 @@ message PremiumPerson {
   string avatar = 4;
   string about = 5;
   string city = 6;
-  string following = 7;
+  // string following = 7;
   string educationsDetails = 8;
 
   message Post {
