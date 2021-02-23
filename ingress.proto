@@ -164,31 +164,28 @@ message FullCompany {
 }
 
 message PremiumCompany {
-  message DataItem {
-    string url = 1;
-    string name = 2;
-    //int32 followers = 3;
-    string employeesAmountInLinkedin = 4;
-    string about = 5;
-    string location = 6;
-    message Employee {
-      string img = 1;
-      string title = 2;
-      string subtitle = 3;
-    }
-    repeated Employee employees = 7;
+  string url = 1;
+  string name = 2;
+  //int32 followers = 3;
+  string employeesAmountInLinkedin = 4;
+  string about = 5;
 
-    message Update {
-      string title = 1;
-      string time = 2;
-      string text = 3;
-      string likes_count = 4;
-      string comments_count = 5;
-    }
-    repeated Update updates = 8;
+  repeated string locations = 6;
+  message Employee {
+    string img = 1;
+    string title = 2;
+    string subtitle = 3;
   }
+  repeated Employee employees = 7;
 
-  repeated DataItem data = 1;
+  message Update {
+    string title = 1;
+    string time = 2;
+    string text = 3;
+    string likes_count = 4;
+    string comments_count = 5;
+  }
+  repeated Update updates = 8;
 }
 
 message Person {
