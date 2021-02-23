@@ -193,7 +193,7 @@ message PremiumCompany {
 
 message Person {
   BasicPerson basic = 1;
-  repeated PremiumPerson data = 2;
+  PremiumPerson data = 2;
 }
 
 message BasicPerson {
