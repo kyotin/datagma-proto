@@ -287,6 +287,8 @@ message PremiumPerson {
     string img = 4;
   }
   repeated Group groups = 15;
+
+  string url = 16;
 }
 
 message Empty {
