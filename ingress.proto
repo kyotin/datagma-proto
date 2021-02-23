@@ -214,47 +214,38 @@ message PremiumPerson {
     string name = 1;
     string link = 2;
   }
-  CurrentCompany currentCompany = 3;
+  CurrentCompany current_company = 3;
 
   string avatar = 4;
   string about = 5;
   string city = 6;
   // string following = 7;
-  string educationsDetails = 8;
+  string educations_details = 8;
 
   message Post {
     string image = 1;
     string title = 2;
-    string attribution = 3;
+    string attribuion = 3;
   }
   repeated Post posts = 9;
 
-  message ExperienceWithCompany {
+  message Experience {
     string company = 1;
     string duration = 2;
     string positions = 3;
+    string title = 4;
+    string subtitle = 5;
+    string location = 6;
+    string description = 7;
   }
-  message ExperienceOwn {
-    string title = 1;
-    string subtitle = 2;
-    string duration = 3;
-    string location = 4;
-    string description = 5;
-  }
-  message Experience {
-    oneof experience {
-      ExperienceWithCompany experienceWithCompany = 1;
-      ExperienceOwn experienceOwn = 2;
-    }
-  }
-  repeated Experience experiences = 10;
+  repeated Experience experience = 10;
 
   message Education {
     string title = 1;
     string subtitle = 2;
     string meta = 3;
   }
-  repeated Education educations = 11;
+  repeated Education education = 11;
 
   message Certification {
     string title = 1;
