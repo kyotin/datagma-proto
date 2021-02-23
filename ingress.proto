@@ -288,7 +288,10 @@ message PremiumPerson {
   }
   repeated Group groups = 15;
 
-  string url = 16;
+  message Input {
+    string url = 1;
+  }
+  Input input = 16;
 }
 
 message Empty {
