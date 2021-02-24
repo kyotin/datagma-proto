@@ -166,17 +166,27 @@ message FullCompany {
 message PremiumCompany {
   string url = 1;
   string name = 2;
+  string sphere = 3;
   //int32 followers = 3;
   string employeesAmountInLinkedin = 4;
   string about = 5;
 
   repeated string locations = 6;
+
   message Employee {
     string img = 1;
     string title = 2;
     string subtitle = 3;
   }
   repeated Employee employees = 7;
+
+  string website = 8;
+  string industries = 9;
+  string companySize = 10;
+  string headquarters = 11;
+  string type = 12;
+  string founded = 13;
+  string specialties = 14;
 
   message Update {
     string title = 1;
@@ -185,7 +195,7 @@ message PremiumCompany {
     string likes_count = 4;
     string comments_count = 5;
   }
-  repeated Update updates = 8;
+  repeated Update updates = 15;
 }
 
 message Person {
