@@ -196,6 +196,11 @@ message PremiumCompany {
     string comments_count = 5;
   }
   repeated Update updates = 15;
+
+  message Input {
+    string url = 1;
+  }
+  Input input = 16;
 }
 
 message Person {
