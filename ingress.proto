@@ -242,7 +242,11 @@ message PremiumPerson {
   message Experience {
     string company = 1;
     string duration = 2;
-    string positions = 3;
+    message Position {
+      string title = 1;
+      string meta = 2;
+    }
+    repeated Position positions = 3;
     string title = 4;
     string subtitle = 5;
     string location = 6;
