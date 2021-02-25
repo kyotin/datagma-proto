@@ -309,6 +309,11 @@ message LuminatiCallback {
   bytes data = 1;
 }
 
+message FindPhoneRequest {
+  string apiId = 1;
+  string data = 2;
+}
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
@@ -317,9 +322,13 @@ service IngressService {
     };
   }
 
-  // Handle luminati person callback
+  rpc FindPhone(FindPhoneRequest) returns (finder.GetPhoneNumberResponse) {
+    option (google.api.http) = {
+      get: "/api/ingress/v1/phone"
+    };
+  }
+
   rpc HandlePersonCallback(LuminatiCallback) returns (Empty){}
 
-  // Handle luminati company callback
   rpc HandleCompanyCallback(LuminatiCallback) returns (Empty){}
 }
