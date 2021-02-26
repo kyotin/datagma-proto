@@ -314,6 +314,14 @@ message FindPhoneRequest {
   string data = 2;
 }
 
+message FindFacebookNumberRequest {
+  string uid = 1;
+}
+
+message FindFacebookNumberResponse {
+  string number = 1;
+}
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
@@ -325,6 +333,12 @@ service IngressService {
   rpc FindPhone(FindPhoneRequest) returns (finder.GetPhoneNumberResponse) {
     option (google.api.http) = {
       get: "/api/ingress/v1/phone"
+    };
+  }
+
+  rpc FindFacebookNumberByUID(FindFacebookNumberRequest) returns (FindFacebookNumberResponse) {
+    option (google.api.http) = {
+      get: "/api/ingress/v1/fbnumber"
     };
   }
 
