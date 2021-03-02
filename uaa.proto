@@ -63,6 +63,7 @@ message UserResponse {
   int64 roleId = 9;
   string apiId = 10;
   int64 status = 11;
+  string jwt = 12;
 }
 
 message ListRoleRequest {
