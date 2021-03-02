@@ -39,6 +39,17 @@ message DeductCreditResponse {
   int64 deductAmount = 3;
 }
 
+message AddCreditRequest {
+  string apiId = 1;
+  int64 amount = 2;
+}
+
+message AddCreditResponse {
+  string apiId = 1;
+  int64 currentCredit = 2;
+  int64 addAmount = 3;
+}
+
 message GetCreditRequest {
   string email = 1;
   string apiId = 2;
@@ -91,6 +102,14 @@ service CreditManagement {
   rpc Deduct(DeductCreditRequest) returns (DeductCreditResponse) {
     option (google.api.http) = {
       post: "/api/credit/v1/deduct"
+      body: "*"
+    };
+  }
+
+  // Add Credit, this method will add credit
+  rpc AddCredit(AddCreditRequest) returns (AddCreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/add"
       body: "*"
     };
   }
