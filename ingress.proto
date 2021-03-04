@@ -34,7 +34,7 @@ message FullApiRequest {
     string data = 1;
     string apiId = 2;
     bool personFull = 3;
-    bool companyBasic = 4;
+    bool companyFrench = 4;
     bool companyPremium = 5;
     bool companyFull = 6;
     bool phone = 7;
@@ -47,13 +47,13 @@ message FullApiResponse {
 }
 
 message Company {
-  BasicCompany basicCompany = 1;
+  FrenchCompany frenchCompany = 1;
   PremiumCompany premiumCompany = 2;
   FullCompany fullCompany = 3;
 }
 
 // model.paper
-message BasicCompany {
+message FrenchCompany {
   string siren = 1;
   string nom_entreprise = 2;
   string code_naf = 3;
