@@ -34,10 +34,11 @@ message FullApiRequest {
     string data = 1;
     string apiId = 2;
     bool personFull = 3;
-    bool companyFrench = 4;
-    bool companyPremium = 5;
-    bool companyFull = 6;
-    bool phone = 7;
+    bool companyBasic = 4;
+    bool companyFrench = 5;
+    bool companyPremium = 6;
+    bool companyFull = 7;
+    bool phone = 8;
 }
 
 message FullApiResponse {
@@ -47,9 +48,22 @@ message FullApiResponse {
 }
 
 message Company {
+  BasicCompany basicCompany = 4;
   FrenchCompany frenchCompany = 1;
   PremiumCompany premiumCompany = 2;
   FullCompany fullCompany = 3;
+}
+
+message BasicCompany {
+  string name = 1;
+  string website = 2;
+  string year_founded = 3;
+  string industry = 4;
+  int32 size = 5;
+  string locality = 6;
+  string region = 7;
+  string country = 8;
+  string linked_url = 9;
 }
 
 // model.paper
