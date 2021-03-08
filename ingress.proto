@@ -39,6 +39,11 @@ message FullApiRequest {
     bool companyPremium = 6;
     bool companyFull = 7;
     bool phone = 8;
+
+    // below fields for task https://www.notion.so/Add-a-new-input-fullname-company-507341cf54d746009a8aba8f98d4c4a9
+    string firstName = 9;
+    string lastName = 10;
+    string company = 11;
 }
 
 message FullApiResponse {
