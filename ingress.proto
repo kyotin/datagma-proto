@@ -42,12 +42,14 @@ message FullApiRequest {
     string firstName = 9;
     string lastName = 10;
     string company = 11;
+    bool findEmail = 12;
 }
 
 message FullApiResponse {
   finder.GetPhoneNumberResponse phone = 1;
-  Person person = 2;
-  Company company = 3;
+  finder.GetEmailResponse email = 2;
+  Person person = 3;
+  Company company = 4;
 }
 
 message Company {
