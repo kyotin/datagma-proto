@@ -58,10 +58,6 @@ message Company {
   FrenchCompany frenchCompany = 1;
   PremiumCompany premiumCompany = 2;
   FullCompany fullCompany = 3;
-  oneof infoCompany {
-    PremiumCompany premium = 6;
-    FullCompany full = 7;
-  }
 }
 
 message BasicCompany {
