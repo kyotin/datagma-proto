@@ -38,11 +38,12 @@ message FullApiRequest {
     bool companyFrench = 5;
     bool companyPremium = 6;
     bool companyFull = 7;
-    bool phone = 8;
-    string firstName = 9;
-    string lastName = 10;
-    string company = 11;
-    bool findEmail = 12;
+    bool companyInfo = 8;
+    bool phone = 9;
+    string firstName = 10;
+    string lastName = 11;
+    string company = 12;
+    bool findEmail = 13;
 }
 
 message FullApiResponse {
