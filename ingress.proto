@@ -54,10 +54,111 @@ message FullApiResponse {
 }
 
 message Company {
-  BasicCompany basicCompany = 4;
-  FrenchCompany frenchCompany = 1;
-  PremiumCompany premiumCompany = 2;
-  FullCompany fullCompany = 3;
+  BasicCompany basic = 4;
+  FrenchCompany french = 1;
+  CompanyInfo detail = 2;
+}
+
+message CompanyInfo {
+  message Name {
+    string name = 1;
+    string legalName = 2;
+  }
+  Name name = 1;
+
+  message Domain {
+    string domain = 1;
+    repeated string alias = 2;
+  }
+  Domain domain = 2;
+
+  message Contact {
+    string phoneNumber = 1;
+    string emailAddress = 2;
+  }
+  Contact contact = 3;
+
+  message Industry {
+    string categories = 1;
+  }
+  Industry industry = 4;
+
+  string description = 5;
+  string foundedDate = 6;
+
+  message Location {
+    string location = 1;
+    string headquater = 2;
+    string headquaterAddr = 3;
+    repeated string subsidiary = 4;
+  }
+  Location location = 7;
+
+  string timezone = 8;
+  string utfOffset = 9;
+  string geo = 10;
+  string logo = 11;
+
+  message Handle {
+    string facebook = 1;
+
+    message LinkedIn {
+      string url = 1;
+      string id = 2;
+      string follower = 3;
+    }
+    LinkedIn linkedIn = 2;
+
+    message Crunchbase {
+      string url = 1;
+    }
+    Crunchbase crunchbase = 3;
+
+    message Twitter {
+      string url = 1;
+    }
+    Twitter twitter = 4;
+  }
+  Handle handle = 12;
+
+  message Funding {
+    message Total {
+      float amount = 1;
+      int64 round = 2;
+    }
+    Total total = 1;
+
+    message LastFunding {
+      string type = 1;
+      string date = 2;
+      int64 amount = 3;
+    }
+    LastFunding lastFunding = 2;
+  }
+  Funding funding = 13;
+
+  string type = 14;
+
+  message Public {
+    bool isPublic = 1;
+    string date = 2;
+    string link = 3;
+    string ticker = 4;
+  }
+  Public public = 15;
+
+  message Identifiers {
+    string employee = 1;
+    string sizeRange = 2;
+    string valuationRange = 3;
+  }
+  Identifiers identifier = 16;
+
+  message Website {
+    int64 trafficGlobalRank = 1;
+    int64 trafficLastMonth = 2;
+  }
+  Website website = 17;
 }
 
 message BasicCompany {
@@ -107,6 +208,10 @@ message FullCompany {
     string revenue_range = 1;
     string  title = 2;
     string short_description = 3;
+    message Identifier {
+      string permalink = 1;
+    }
+    Identifier identifier = 4;
   }
   Properties properties = 1;
 
@@ -118,6 +223,7 @@ message FullCompany {
       FundingTotal funding_total = 1;
       string       last_funding_type = 2;
       string       last_funding_at = 3;
+      int64 num_funding_rounds = 4;
     }
     FundingRoundsSummary funding_rounds_summary = 1;
 
@@ -177,8 +283,39 @@ message FullCompany {
       }
       Twitter twitter = 3;
       string contact_email = 4;
+
+      message Facebook {
+        string value = 1;
+      }
+      Facebook facebook = 5;
     }
     OverviewFields2 overview_fields2 = 6;
+
+    message FundingRoundList {
+      message MoneyRaised {
+        int64 value = 1;
+        string currency = 2;
+        int64 value_usd = 3;
+      }
+      MoneyRaised money_raised = 1;
+    }
+    repeated FundingRoundList funding_rounds_list = 7;
+
+    message SemrushSummary {
+      int64 semrush_global_rank = 1;
+      int64 semrush_visits_latest_month = 2;
+    }
+    SemrushSummary semrush_summary = 8;
+
+    message IPOSummary {
+      message StockLink {
+        string label = 1;
+        string value = 2;
+      }
+      StockLink stock_link = 1;
+      string went_public_on = 2;
+    }
+    IPOSummary ipo_summary = 10;
   }
   Cards cards = 2;
 }
