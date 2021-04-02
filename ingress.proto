@@ -358,6 +358,9 @@ message PremiumCompany {
     string url = 1;
   }
   Input input = 16;
+
+  string followers = 17;
+  string companyId = 18;
 }
 
 message Person {
