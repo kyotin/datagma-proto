@@ -159,6 +159,9 @@ message CompanyInfo {
     int64 trafficLastMonth = 2;
   }
   Website website = 17;
+
+  repeated string technologies = 19;
+  repeated string technologiesCategories = 20;
 }
 
 message BasicCompany {
@@ -318,6 +321,9 @@ message FullCompany {
     IPOSummary ipo_summary = 10;
   }
   Cards cards = 2;
+
+  repeated string technologies = 3;
+  repeated string technologiesCategories = 4;
 }
 
 message PremiumCompany {
@@ -361,6 +367,9 @@ message PremiumCompany {
 
   string followers = 17;
   string companyId = 18;
+
+  repeated string technologies = 19;
+  repeated string technologiesCategories = 20;
 }
 
 message Person {
