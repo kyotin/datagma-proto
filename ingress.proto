@@ -78,10 +78,11 @@ message CompanyInfo {
   }
   Contact contact = 3;
 
-  message Industry {
-    string categories = 1;
+  message Industries {
+    string industry = 1;
+    string categories = 2;
   }
-  Industry industry = 4;
+  Industries industries = 4;
 
   string description = 5;
   string foundedDate = 6;
