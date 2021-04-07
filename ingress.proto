@@ -80,7 +80,11 @@ message CompanyInfo {
 
   message Industries {
     string industry = 1;
-    string categories = 2;
+
+    message Category {
+      string value = 1;
+    }
+    repeated Category categories = 2;
   }
   Industries industries = 4;
 
