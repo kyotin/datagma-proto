@@ -105,7 +105,10 @@ message CompanyInfo {
   string logo = 11;
 
   message Handle {
-    string facebook = 1;
+    message Facebook {
+      string url = 1;
+    }
+    Facebook facebook = 1;
 
     message LinkedIn {
       string url = 1;
