@@ -95,7 +95,18 @@ message CompanyInfo {
     string location = 1;
     string headquater = 2;
     string headquaterAddr = 3;
-    repeated string subsidiary = 4;
+    string headquaterAddrStreet = 4;
+    string headquaterAddrPostalCode = 5;
+    string headquaterAddrLocality = 6;
+    string headquaterAddrRegion = 7;
+    string headquaterAddrCountry = 8;
+
+    message Subsidiary {
+      string subsidiary = 1;
+      string firstPart = 2;
+      string secondpart = 3;
+    }
+    repeated Subsidiary subsidiary = 9;
   }
   Location location = 7;
 
@@ -342,22 +353,33 @@ message PremiumCompany {
   string employeesAmountInLinkedin = 4;
   string about = 5;
 
-  repeated string locations = 6;
+  string headquaterAddr = 6;
+  string headquaterAddrStreet = 7;
+  string headquaterAddrPostalCode = 8;
+  string headquaterAddrLocality = 9;
+  string headquaterAddrRegion = 10;
+  string headquaterAddrCountry = 11;
+  message Subsidiary {
+    string subsidiary = 1;
+    string firstPart = 2;
+    string secondpart = 3;
+  }
+  repeated Subsidiary subsidiary = 12;
 
   message Employee {
     string img = 1;
     string title = 2;
     string subtitle = 3;
   }
-  repeated Employee employees = 7;
+  repeated Employee employees = 13;
 
-  string website = 8;
-  string industries = 9;
-  string companySize = 10;
-  string headquarters = 11;
-  string type = 12;
-  string founded = 13;
-  string specialties = 14;
+  string website = 14;
+  string industries = 15;
+  string companySize = 16;
+  string headquarters = 17;
+  string type = 18;
+  string founded = 19;
+  string specialties = 20;
 
   message Update {
     string title = 1;
@@ -366,18 +388,20 @@ message PremiumCompany {
     string likes_count = 4;
     string comments_count = 5;
   }
-  repeated Update updates = 15;
+  repeated Update updates = 21;
 
   message Input {
     string url = 1;
   }
-  Input input = 16;
+  Input input = 22;
 
-  string followers = 17;
-  string companyId = 18;
+  string followers = 23;
+  string companyId = 24;
 
-  repeated string technologies = 19;
-  repeated string technologiesCategories = 20;
+  repeated string technologies = 25;
+  repeated string technologiesCategories = 26;
+
+  repeated string locations = 27;
 }
 
 message Person {
