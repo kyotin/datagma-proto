@@ -395,7 +395,7 @@ message PremiumCompany {
   }
   Input input = 22;
 
-  string followers = 23;
+  //string followers = 23;
   string companyId = 24;
 
   repeated string technologies = 25;
