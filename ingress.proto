@@ -54,7 +54,7 @@ message FullApiResponseItm {
 }
 
 message FullApiResponse {
-  repeated FullApiResponseItm item = 1;
+  repeated FullApiResponseItm _ = 1;
 }
 
 message Company {
