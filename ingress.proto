@@ -46,15 +46,11 @@ message FullApiRequest {
     bool findEmail = 13;
 }
 
-message FullApiResponseItm {
+message FullApiResponse {
   finder.GetPhoneNumberResponse phone = 1;
   finder.GetEmailResponse email = 2;
   Person person = 3;
   Company company = 4;
-}
-
-message FullApiResponse {
-  repeated FullApiResponseItm _ = 1;
 }
 
 message Company {
