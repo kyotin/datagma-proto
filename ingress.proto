@@ -145,6 +145,7 @@ message CompanyInfo {
       float amount = 1;
       int64 round = 2;
       string amountPretty = 3;
+      string amountRoundUp = 4;
     }
     Total total = 1;
 
@@ -153,6 +154,7 @@ message CompanyInfo {
       string date = 2;
       int64 amount = 3;
       string amountPretty = 4;
+      string amountRoundUp = 5;
     }
     LastFunding lastFunding = 2;
   }
