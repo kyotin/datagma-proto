@@ -152,6 +152,7 @@ message CompanyInfo {
       string type = 1;
       string date = 2;
       int64 amount = 3;
+      string amountPretty = 4;
     }
     LastFunding lastFunding = 2;
   }
