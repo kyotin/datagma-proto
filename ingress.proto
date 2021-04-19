@@ -290,6 +290,11 @@ message FullCompany {
 
       string       legal_name = 7;
       string       funding_stage = 8;
+
+      message LocationGroupIdentifiers {
+        string value = 1;
+      }
+      repeated LocationGroupIdentifiers location_group_identifiers = 9;
     }
     OverviewFields overview_fields = 9;
 
