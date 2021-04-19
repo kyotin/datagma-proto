@@ -44,6 +44,7 @@ message FullApiRequest {
     string lastName = 11;
     string company = 12;
     bool findEmail = 13;
+    bool companyPhone = 14;
 }
 
 message FullApiResponse {
