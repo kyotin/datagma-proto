@@ -57,6 +57,7 @@ message Company {
   BasicCompany basic = 4;
   FrenchCompany french = 1;
   CompanyInfo detail = 2;
+  string phone = 3;
 }
 
 message CompanyInfo {
