@@ -58,7 +58,27 @@ message Company {
   BasicCompany basic = 4;
   FrenchCompany french = 1;
   CompanyInfo detail = 2;
-  string phone = 3;
+  CompanyYellowPage phone = 3;
+}
+
+message CompanyYellowPage {
+  string formatted_phone_number = 1;
+  string formatted_address = 2;
+  message Geometry {
+    message Location {
+      float lat = 1;
+      float lng = 2;
+    }
+    Location location = 1;
+
+    message Viewport {
+      Location northeast = 1;
+      Location southwest = 2;
+    }
+    Viewport viewport = 2;
+  }
+  Geometry geometry = 3;
+  string vicinity = 4;
 }
 
 message CompanyInfo {
