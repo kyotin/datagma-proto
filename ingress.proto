@@ -562,7 +562,11 @@ message StellaRequest {
 }
 
 message StellaResponse {
-  BasicPerson info = 1;
+  message Data {
+    string company = 1;
+    string title = 2;
+  }
+  Data new = 1;
   string status = 2;
 }
 
