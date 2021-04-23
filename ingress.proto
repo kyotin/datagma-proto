@@ -554,6 +554,18 @@ message FindFacebookNumberResponse {
   string number = 1;
 }
 
+message StellaRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string companyName = 3;
+  string apiId = 4;
+}
+
+message StellaResponse {
+  BasicPerson info = 1;
+  string status = 2;
+}
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
@@ -577,4 +589,10 @@ service IngressService {
   rpc HandlePersonCallback(LuminatiCallback) returns (Empty){}
 
   rpc HandleCompanyCallback(LuminatiCallback) returns (Empty){}
+
+  rpc StellaUpdate(StellaRequest) returns (StellaResponse){
+    option (google.api.http) = {
+      get: "/api/ingress/v1/update"
+    };
+  }
 }
