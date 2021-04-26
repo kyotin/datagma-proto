@@ -57,7 +57,9 @@ message FullApiResponse {
 message Company {
   BasicCompany basic = 4;
   FrenchCompany french = 1;
-  CompanyInfo detail = 2;
+  FullCompany full = 5;
+  PremiumCompany premium = 6;
+  CompanyInfo info = 2;
   CompanyYellowPage phone = 3;
 }
 
