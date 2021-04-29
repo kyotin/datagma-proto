@@ -60,6 +60,8 @@ message Company {
   FullCompany full = 5;
   PremiumCompany premium = 6;
   CompanyYellowPage phone = 3;
+  repeated string technologies = 7;
+  repeated string technologiesCategories = 8;
 }
 
 message CompanyYellowPage {
@@ -139,11 +141,13 @@ message FullCompany {
   message Cards {
     message FundingRoundsSummary {
       message FundingTotal {
-          float value_usd = 1;
+        float value_usd = 1;
+        string value_usd_pretty = 2;
+        string value_usd_roundup = 3;
       }
       FundingTotal funding_total = 1;
-      string       last_funding_type = 2;
-      string       last_funding_at = 3;
+      string last_funding_type = 2;
+      string last_funding_at = 3;
       int64 num_funding_rounds = 4;
     }
     FundingRoundsSummary funding_rounds_summary = 1;
@@ -170,6 +174,7 @@ message FullCompany {
     message OverviewFields {
       float revenue_range = 1;
       string num_employees_enum = 2;
+      string num_employee = 10;
       string last_funding_type = 3;
       string operating_status = 4;
 
@@ -222,6 +227,8 @@ message FullCompany {
         int64 value = 1;
         string currency = 2;
         int64 value_usd = 3;
+        string value_usd_pretty = 4;
+        string value_usd_roundup = 5;
       }
       MoneyRaised money_raised = 1;
     }
@@ -244,9 +251,6 @@ message FullCompany {
     IPOSummary ipo_summary = 10;
   }
   Cards cards = 2;
-
-  repeated string technologies = 3;
-  repeated string technologiesCategories = 4;
 }
 
 message PremiumCompany {
@@ -301,9 +305,6 @@ message PremiumCompany {
 
   //string followers = 23;
   string companyId = 24;
-
-  repeated string technologies = 25;
-  repeated string technologiesCategories = 26;
 
   repeated string locations = 27;
 }
