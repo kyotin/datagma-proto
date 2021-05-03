@@ -74,6 +74,14 @@ message CreditResponse {
   int64 addAmount = 4;
 }
 
+message DeleteCreditRequest {
+  string apiId = 1;
+}
+
+message DeleteCreditResponse {
+  bool success = 1;
+}
+
 service CreditManagement {
   // Create New Credit, this method will be called when: create user (uaa)
   rpc NewCredit(CreditRequest) returns (CreditResponse) {
@@ -110,6 +118,13 @@ service CreditManagement {
   rpc AddCredit(AddCreditRequest) returns (AddCreditResponse) {
     option (google.api.http) = {
       post: "/api/credit/v1/add"
+      body: "*"
+    };
+  }
+
+  rpc DeleteCredit(DeleteCreditRequest) returns (DeleteCreditResponse) {
+    option (google.api.http) = {
+      post: "/api/credit/v1/delete"
       body: "*"
     };
   }
