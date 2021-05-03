@@ -108,6 +108,7 @@ message ListAllUserResponse {
 
 message DeleteUserRequest {
   string email = 1;
+  bool permanent = 2;
 }
 
 message DeleteUserResponse {
