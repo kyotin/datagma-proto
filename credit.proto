@@ -76,6 +76,7 @@ message CreditResponse {
 
 message DeleteCreditRequest {
   string apiId = 1;
+  string email = 2;
 }
 
 message DeleteCreditResponse {
