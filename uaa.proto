@@ -83,6 +83,7 @@ message IsAPIValidRequest {
 }
 
 message IsAPIValidResponse {
+  string email = 2;
   bool valid = 1;
 }
 
