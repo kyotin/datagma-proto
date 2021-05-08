@@ -35,8 +35,9 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string jwt = 1;
-  string err = 2;
+  string accessToken = 1;
+  string refreshToken = 2;
+  string err = 3;
 }
 
 message UserRequest {
@@ -63,7 +64,8 @@ message UserResponse {
   int64 roleId = 9;
   string apiId = 10;
   int64 status = 11;
-  string jwt = 12;
+  string accessToken = 13;
+  string refreshToken = 14;
 }
 
 message ListRoleRequest {
@@ -116,12 +118,50 @@ message DeleteUserResponse {
   bool success = 1;
 }
 
+message GetNewAccessTokenRequest {
+  string refreshToken = 1;
+}
+
+message GetNewAccessTokenResponse {
+  string accessToken = 2;
+}
+
+message GetApiIdRequest {
+}
+
+message GetApiIdResponse {
+  string apiId = 1;
+}
+
+message IntrospectTokenRequest {
+  string token = 1;
+}
+
+message IntrospectTokenResponse {
+  bool active = 1;
+}
+
 service UAAService {
 
   // Login
   rpc Login(LoginRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/login"
+      body: "*"
+    };
+  }
+
+  // Obtain new access token vs refresh token by using refresh token
+  rpc GetNewAccessToken(GetNewAccessTokenRequest) returns (GetNewAccessTokenResponse) {
+    option (google.api.http) = {
+      post: "/api/uaa/v1/token/refresh"
+      body: "*"
+    };
+  }
+
+  rpc IntrospectToken(IntrospectTokenRequest) returns (IntrospectTokenResponse) {
+    option (google.api.http) = {
+      post: "/api/uaa/v1/token/introspect"
       body: "*"
     };
   }
@@ -169,6 +209,12 @@ service UAAService {
   rpc ListRole(ListRoleRequest) returns (ListRoleResponse) {
     option (google.api.http) = {
       get: "/api/uaa/v1/roles"
+    };
+  }
+
+  rpc GetApiId(GetApiIdRequest) returns (GetApiIdResponse) {
+    option (google.api.http) = {
+      get: "/api/uaa/v1/api_id"
     };
   }
 
