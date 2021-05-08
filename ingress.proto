@@ -435,6 +435,8 @@ message StellaRequest {
   string lastName = 2;
   string companyName = 3;
   string apiId = 4;
+  string jobTitle =5;
+  string email = 6;
 }
 
 message StellaResponse {
