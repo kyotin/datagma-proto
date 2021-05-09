@@ -35,7 +35,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string accessToken = 1;
+  string jwt = 1; // it should be name accessToken, but jwt here for backward compatibility
   string refreshToken = 2;
   string err = 3;
 }
