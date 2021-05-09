@@ -273,21 +273,27 @@ message PremiumCompany {
     string secondpart = 3;
   }
   repeated Subsidiary subsidiary = 12;
+  string numberOfLocation = 13;
 
   message Employee {
     string img = 1;
     string title = 2;
     string subtitle = 3;
   }
-  repeated Employee employees = 13;
+  repeated Employee employees = 14;
 
-  string website = 14;
-  string industries = 15;
-  string companySize = 16;
-  string headquarters = 17;
-  string type = 18;
-  string founded = 19;
-  string specialties = 20;
+  string website = 15;
+  string industries = 16;
+  string companySize = 17;
+  string headquarters = 18;
+  string type = 19;
+  string founded = 20;
+  string specialties = 21;
+
+  message Speciality {
+    string value = 1;
+  }
+  repeated Speciality specialtiesArr = 22;
 
   message Update {
     string title = 1;
@@ -296,15 +302,15 @@ message PremiumCompany {
     string likes_count = 4;
     string comments_count = 5;
   }
-  repeated Update updates = 21;
+  repeated Update updates = 23;
 
   message Input {
     string url = 1;
   }
-  Input input = 22;
+  Input input = 24;
 
-  //string followers = 23;
-  string companyId = 24;
+  //string followers = 25;
+  string companyId = 26;
 
   repeated string locations = 27;
 }
@@ -326,7 +332,7 @@ message BasicPerson {
   string extractedSeniority = 9;
   string extractedGender = 10;
   string dateDeNaissanceFormate = 11;
-  int64 age = 12;
+  string age = 12;
 }
 
 message PremiumPerson {
