@@ -447,10 +447,20 @@ message StellaRequest {
 
 message StellaResponse {
   message Data {
-    string company = 1;
-    string title = 2;
+    string linkedIn = 1;
+    string currentCompany = 2;
+    string title = 3;
+    message Experience {
+      string company = 1;
+      string jobTitle = 2;
+      string duration = 3;
+    }
+    repeated Experience experiences = 4;
+    bool ableToGetPastExperience = 5;
+    bool ableToFindCompanyInputInProfile = 6;
   }
-  Data new = 1;
+  Data data = 1;
+
   string status = 2;
 }
 
