@@ -141,6 +141,10 @@ message IntrospectTokenResponse {
   bool active = 1;
 }
 
+message VerifiedEmailRequest {
+  string email = 1;
+}
+
 service UAAService {
 
   // Login
@@ -222,6 +226,14 @@ service UAAService {
   rpc IsAPIValid(IsAPIValidRequest) returns (IsAPIValidResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/api_id/valid"
+      body: "*"
+    };
+  }
+
+  // Verified Email
+  rpc VerifiedEmail(VerifiedEmailRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/api/uaa/v1/verified_email"
       body: "*"
     };
   }
