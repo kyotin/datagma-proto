@@ -142,7 +142,7 @@ message IntrospectTokenResponse {
 }
 
 message VerifiedEmailRequest {
-  string email = 1;
+  string encryptedEmail = 1;
 }
 
 service UAAService {
