@@ -145,6 +145,23 @@ message VerifiedEmailRequest {
   string encryptedEmail = 1;
 }
 
+message ForgotPasswordRequest {
+  string email = 1;
+}
+
+message ForgotPasswordResponse {
+  bool sentEmail = 1;
+}
+
+message VerifyForgotPasswordRequest {
+  string otp = 1;
+  string newPassword = 2;
+}
+
+message VerifyForgotPasswordResponse {
+  bool success = 1;
+}
+
 service UAAService {
 
   // Login
@@ -234,6 +251,20 @@ service UAAService {
   rpc VerifiedEmail(VerifiedEmailRequest) returns (LoginResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/verified_email"
+      body: "*"
+    };
+  }
+
+  rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {
+    option (google.api.http) = {
+      post: "/api/uaa/v1/forgot_password"
+      body: "*"
+    };
+  }
+
+  rpc VerifyForgotPassword(VerifyForgotPasswordRequest) returns (VerifyForgotPasswordResponse) {
+    option (google.api.http) = {
+      post: "/api/uaa/v1/verify_forgot_password"
       body: "*"
     };
   }
