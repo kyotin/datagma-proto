@@ -413,6 +413,8 @@ message PremiumPerson {
     string url = 1;
   }
   Input input = 16;
+
+  string from = 17;
 }
 
 message Empty {
@@ -447,17 +449,21 @@ message StellaRequest {
 
 message StellaResponse {
   message Data {
-    string linkedIn = 1;
-    string currentCompany = 2;
-    string title = 3;
+    string firstName = 1;
+    string lastName = 2;
+    string name = 3;
+    string linkedIn = 4;
+    string currentCompany = 5;
+    string title = 6;
     message Experience {
       string company = 1;
       string jobTitle = 2;
       string duration = 3;
     }
-    repeated Experience experiences = 4;
-    bool ableToGetPastExperience = 5;
-    bool ableToFindCompanyInputInProfile = 6;
+    repeated Experience experiences = 7;
+    bool ableToGetPastExperience = 8;
+    bool ableToFindCompanyInputInProfile = 9;
+    string from = 10;
   }
   Data data = 1;
 
