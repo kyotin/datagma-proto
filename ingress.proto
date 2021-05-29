@@ -499,4 +499,10 @@ service IngressService {
       get: "/api/ingress/v1/update"
     };
   }
+
+  rpc StellaUpdateV2(StellaRequest) returns (StellaResponse){
+    option (google.api.http) = {
+      get: "/api/ingress/v2/update"
+    };
+  }
 }
