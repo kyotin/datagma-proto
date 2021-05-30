@@ -45,6 +45,7 @@ message FullApiRequest {
     string company = 12;
     bool findEmail = 13;
     bool companyPhone = 14;
+    bool website = 15;
 }
 
 message FullApiResponse {
@@ -52,6 +53,45 @@ message FullApiResponse {
   finder.GetEmailResponse email = 2;
   Person person = 3;
   Company company = 4;
+}
+
+message SimilarWeb {
+  message AdNetworks {
+    int64 count = 1;
+    message Data {
+      repeated string item = 1;
+    }
+    repeated Data data = 2;
+  }
+  AdNetworks addNetworks = 1;
+
+  message TrafficSources {
+    float direct = 1;
+    float referrals = 2;
+    float search = 3;
+    float social = 4;
+    float mail = 5;
+    float paidReferrals = 6;
+  }
+  TrafficSources trafficSources = 2;
+
+  string category = 3;
+
+  message SimilarSite {
+    string site = 1;
+    string altImage = 2;
+    string imageUrl = 3;
+    string iconUrl = 4;
+    string ellipsiseName = 5;
+    int64 rank = 6;
+    bool isBlackListed = 7;
+  }
+  repeated SimilarSite similarSites = 4;
+
+  message TopCountryShare {
+    repeated float item = 1;
+  }
+  repeated TopCountryShare topCountryShares = 5;
 }
 
 message Company {
@@ -62,6 +102,7 @@ message Company {
   CompanyYellowPage phone = 3;
   repeated string technologies = 7;
   repeated string technologiesCategories = 8;
+  SimilarWeb similarWeb = 9;
 }
 
 message CompanyYellowPage {
