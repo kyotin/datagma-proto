@@ -511,11 +511,28 @@ message StellaResponse {
   string status = 2;
 }
 
+message GoogleScrapeRequest {
+  string country = 1;
+  string query = 2;
+  string apiId = 3;
+}
+
+message GoogleScrapeResponse {
+  repeated Person persons = 1;
+}
+
+
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
     option (google.api.http) = {
       get: "/api/ingress/v1/full"
+    };
+  }
+
+  rpc GoogleScrape(GoogleScrapeRequest) returns (GoogleScrapeResponse) {
+    option (google.api.http) = {
+      get: "/api/ingress/v1/google"
     };
   }
 
