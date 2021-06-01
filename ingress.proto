@@ -521,12 +521,31 @@ message GoogleScrapeResponse {
   repeated Person persons = 1;
 }
 
+message CompanyEnrichRequest {
+  string name = 1;
+  string website = 2;
+  string apiId = 3;
+  bool companyBasic = 4;
+  bool companyFrench = 5;
+  bool companyPremium = 6;
+  bool companyFull = 7;
+  bool companyInfo = 8;
+  bool companyPhone = 9;
+  bool similarWeb = 10;
+
+}
 
 service IngressService {
   // FullApi
   rpc FullApi(FullApiRequest) returns (FullApiResponse) {
     option (google.api.http) = {
       get: "/api/ingress/v1/full"
+    };
+  }
+
+  rpc CompanyEnrich(CompanyEnrichRequest) returns (Company) {
+    option (google.api.http) = {
+      get: "/api/ingress/v1/company"
     };
   }
 
