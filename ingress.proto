@@ -292,6 +292,8 @@ message FullCompany {
     IPOSummary ipo_summary = 10;
   }
   Cards cards = 2;
+
+  float score = 3;
 }
 
 message PremiumCompany {
@@ -354,6 +356,8 @@ message PremiumCompany {
   string companyId = 26;
 
   repeated string locations = 27;
+
+  float score = 28;
 }
 
 message Person {
