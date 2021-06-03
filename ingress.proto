@@ -528,15 +528,16 @@ message GoogleScrapeResponse {
 message CompanyEnrichRequest {
   string name = 1;
   string website = 2;
-  string apiId = 3;
-  bool companyBasic = 4;
-  bool companyFrench = 5;
-  bool companyPremium = 6;
-  bool companyFull = 7;
-  bool companyInfo = 8;
-  bool companyPhone = 9;
-  bool similarWeb = 10;
-
+  string siren = 3;
+  string companyFrenchHint = 4;
+  string apiId = 5;
+  bool companyBasic = 6;
+  bool companyFrench = 7;
+  bool companyPremium = 8;
+  bool companyFull = 9;
+  bool companyInfo = 10;
+  bool companyPhone = 11;
+  bool similarWeb = 12;
 }
 
 service IngressService {
