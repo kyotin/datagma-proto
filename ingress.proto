@@ -45,7 +45,7 @@ message FullApiRequest {
     string company = 12;
     bool findEmail = 13;
     bool companyPhone = 14;
-    bool website = 15;
+    bool similarWeb = 15;
 }
 
 message FullApiResponse {
