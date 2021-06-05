@@ -67,6 +67,7 @@ message GetCreditResponse {
   string email = 1;
   string apiId = 2;
   int64 currentCredit = 3;
+  Plan plan = 4;
 }
 
 message CreditRequest {
