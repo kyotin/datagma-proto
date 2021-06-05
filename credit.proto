@@ -82,6 +82,7 @@ message CreditResponse {
   string apiId = 2;
   int64 currentCredit = 3;
   int64 addAmount = 4;
+  Plan plan = 5;
 }
 
 message DeleteCreditRequest {
