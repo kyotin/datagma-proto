@@ -68,6 +68,7 @@ message UserResponse {
   int64 status = 11;
   string accessToken = 13;
   string refreshToken = 14;
+  credit.Plan plan = 15;
 }
 
 message ListRoleRequest {
