@@ -31,21 +31,24 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 message FullApiRequest {
-    string data = 1;
-    string apiId = 2;
-    bool personFull = 3;
-    bool companyBasic = 4;
-    bool companyFrench = 5;
-    bool companyPremium = 6;
-    bool companyFull = 7;
-    bool companyInfo = 8;
-    bool phone = 9;
-    string firstName = 10;
-    string lastName = 11;
-    string company = 12;
-    bool findEmail = 13;
-    bool companyPhone = 14;
-    bool similarWeb = 15;
+  // Your API key
+  string apiId = 1;
+
+  // A professional email address or a LinkedIn profile URL. A successful response costs 2 credits
+  string data = 2;
+  bool companyInfo = 3;
+  bool companyPremium = 4;
+  bool companyFull = 5;
+  bool companyBasic = 6;
+  bool companyFrench = 7;
+  bool findEmail = 8;
+  bool personFull = 9;
+  string firstName = 10;
+  string lastName = 11;
+  string company = 12;
+  bool phone = 13;
+  bool companyPhone = 14;
+  bool similarWeb = 15;
 }
 
 message FullApiResponse {
