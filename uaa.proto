@@ -3,6 +3,7 @@ package uaa;
 option go_package = "internal/grpc";
 
 import "google/api/annotations.proto";
+import "external/datagma-proto/credit.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
@@ -51,6 +52,7 @@ message UserRequest {
   int64 roleId = 9;
   string apiId = 10;
   int64 status = 11;
+  credit.Plan plan = 12;
 }
 
 message UserResponse {
@@ -66,6 +68,7 @@ message UserResponse {
   int64 status = 11;
   string accessToken = 13;
   string refreshToken = 14;
+  credit.Plan plan = 15;
 }
 
 message ListRoleRequest {
