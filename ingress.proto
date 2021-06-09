@@ -596,6 +596,13 @@ service IngressService {
     };
   }
 
+  // FullApiV2 is a merged of FullApiV1 + CompanyEnrich
+  rpc FullApiV2(FullApiRequest) returns (FullApiResponse) {
+    option (google.api.http) = {
+      get: "/api/ingress/v2/full"
+    };
+  }
+
   rpc GoogleScrape(GoogleScrapeRequest) returns (GoogleScrapeResponse) {
     option (google.api.http) = {
       get: "/api/ingress/v1/google"
