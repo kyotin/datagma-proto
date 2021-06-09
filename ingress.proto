@@ -31,21 +31,60 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 
 message FullApiRequest {
-  // Your API key
-  string apiId = 1;
+  string apiId = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "Your API key",
+  }];
 
-  // A professional email address or a LinkedIn profile URL. A successful response costs 2 credits
-  string data = 2;
-  bool companyInfo = 3;
-  bool companyPremium = 4;
-  bool companyFull = 5;
-  bool companyBasic = 6;
-  bool companyFrench = 7;
-  bool findEmail = 8;
-  bool personFull = 9;
-  string firstName = 10;
-  string lastName = 11;
-  string company = 12;
+  string data = 2 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "A professional email address or a LinkedIn profile URL. A successful response costs 2 credits",
+  }];
+
+  bool companyInfo = 3 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To let us choose the fastest way between companyFull and companyPremium. Useful when you only want basic infos about company (like locations, size-range, industry...)",
+    default: "true"
+  }];
+
+  bool companyPremium = 4 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get the LinkedIn information about the enriched person's company. A successful response costs 5 credits",
+    default: "false"
+  }];
+
+  bool companyFull = 5 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get financial information about the company of the enriched person. A successful response costs 10 credits",
+    default: "false"
+  }];
+
+  bool companyBasic = 6 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get the minimum infos about the enriched person's company. A successful response costs 2 credits",
+    default: "false"
+  }];
+
+  bool companyFrench = 7 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get the information of the SIREN directory if the company is French. A successful response costs 2 credits",
+    default: "false"
+  }];
+
+  bool findEmail = 8 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get the verified work email address of the enriched person if you don't submit one in input. A successful response costs 10 credits",
+    default: "false"
+  }];
+
+  bool personFull = 9 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get the full profile of the person(education, past experiences...). A successful response costs 5 credits",
+  }];
+
+  string firstName = 10 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "Replace the data parameter if you don't use it. (Must be used with lastName and company). A successful response with this schema costs 2 credits",
+  }];
+
+  string lastName = 11 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "Replace the data parameter if you don't use it. (Must be used with firstName and company). A successful response with this schema costs 2 credits",
+  }];
+
+  string company = 12 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "Replace the data parameter if you don't fill it. (Must be used with firstName and lastName). A successful response with this schema costs 2 credits",
+  }];
+
   bool phone = 13;
   bool companyPhone = 14;
   bool similarWeb = 15;
