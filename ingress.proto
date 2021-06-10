@@ -87,7 +87,7 @@ message FullApiRequest {
 
   bool phone = 13;
   bool companyPhone = 14;
-  bool similarWeb = 15;
+  bool deepTraffic = 15;
 }
 
 message FullApiResponse {
@@ -97,7 +97,7 @@ message FullApiResponse {
   Company company = 4;
 }
 
-message SimilarWeb {
+message DeepTraffic {
   message AdNetworks {
     int64 count = 1;
     message Data {
@@ -144,7 +144,7 @@ message Company {
   CompanyYellowPage phone = 3;
   repeated string technologies = 7;
   repeated string technologiesCategories = 8;
-  SimilarWeb similarWeb = 9;
+  DeepTraffic deepTraffic = 9;
 }
 
 message CompanyYellowPage {
@@ -579,7 +579,7 @@ message CompanyEnrichRequest {
   bool companyFull = 9;
   bool companyInfo = 10;
   bool companyPhone = 11;
-  bool similarWeb = 12;
+  bool deepTraffic = 12;
 }
 
 service IngressService {
