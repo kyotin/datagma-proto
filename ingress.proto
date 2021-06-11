@@ -88,6 +88,10 @@ message FullApiRequest {
   bool phone = 13;
   bool companyPhone = 14;
   bool deepTraffic = 15;
+
+  string companyKeyword = 16 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To let us pick the correct company",
+  }];
 }
 
 message FullApiResponse {
@@ -571,7 +575,7 @@ message CompanyEnrichRequest {
   string name = 1;
   string website = 2;
   string siren = 3;
-  string companyFrenchHint = 4;
+  string companyKeyword = 4;
   string apiId = 5;
   bool companyBasic = 6;
   bool companyFrench = 7;
