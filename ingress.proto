@@ -212,7 +212,6 @@ message FrenchCompany {
   repeated Representant representants = 13;
 }
 
-// model.crunchbase
 message FullCompany {
   message Properties {
     string revenue_range = 1;
@@ -239,19 +238,19 @@ message FullCompany {
     }
     FundingRoundsSummary funding_rounds_summary = 1;
 
-    message SemrushRankHeadline {
-        int64 semrush_visits_latest_month = 1;
-        float semrush_visits_mom_pct = 2;
+    message TrafficRankHeadline {
+        int64 visits_latest_month = 1;
+        float visits_mom_pct = 2;
     }
-    SemrushRankHeadline semrush_rank_headline = 2;
+    TrafficRankHeadline traffic_rank_headline = 2;
 
-    message AberdeenSummary {
-      message AberdeenSiteItSpend {
+    message SpentSummary {
+      message SiteItSpend {
        float value_usd = 1;
       }
-      AberdeenSiteItSpend aberdeen_site_it_spend = 1;
+      SiteItSpend site_it_spend = 1;
     }
-    AberdeenSummary aberdeen_summary = 3;
+    SpentSummary spent_summary = 3;
 
     message OverviewCompanyFields{
       string company_type = 1;
@@ -321,11 +320,11 @@ message FullCompany {
     }
     repeated FundingRoundList funding_rounds_list = 7;
 
-    message SemrushSummary {
-      int64 semrush_global_rank = 1;
-      int64 semrush_visits_latest_month = 2;
+    message TrafficSummary {
+      int64 global_rank = 1;
+      int64 visits_latest_month = 2;
     }
-    SemrushSummary semrush_summary = 8;
+    TrafficSummary traffic_summary = 8;
 
     message IPOSummary {
       message StockLink {
