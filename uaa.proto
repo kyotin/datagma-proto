@@ -172,10 +172,7 @@ message ApproveUserRequest {
     Approved = 1;
     Rejected = 2;
   }
-  ApproveStatus approve = 2 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
-    description: "Accept values [Approved, Rejected]",
-    default: 1
-  }];
+  ApproveStatus approve = 2;
 }
 
 message ApproveUserResponse {
@@ -245,7 +242,7 @@ service UAAService {
     };
   }
 
-  // Approve A User
+  // Approve A User, accepted values [Approved, Rejected]
   rpc ApproveUser(ApproveUserRequest) returns (ApproveUserResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/approve"
