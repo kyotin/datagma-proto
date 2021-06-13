@@ -172,7 +172,10 @@ message ApproveUserRequest {
     Approved = 1;
     Rejected = 2;
   }
-  ApproveStatus approve = 2;
+  ApproveStatus approve = 2 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "Accept values [Approved, Rejected]",
+    default: 1
+  }];
 }
 
 message ApproveUserResponse {
@@ -235,12 +238,14 @@ service UAAService {
     };
   }
 
+  // List All Users Need To Be Approved
   rpc ListUnapprovedUsers(ListAllUserRequest) returns (ListAllUserResponse) {
     option (google.api.http) = {
       get: "/api/uaa/v1/unapproved"
     };
   }
 
+  // Approve A User
   rpc ApproveUser(ApproveUserRequest) returns (ApproveUserResponse) {
     option (google.api.http) = {
       post: "/api/uaa/v1/approve"
