@@ -69,6 +69,7 @@ message UserResponse {
   string accessToken = 13;
   string refreshToken = 14;
   credit.Plan plan = 15;
+  ApproveStatus approved = 16;
 }
 
 message ListRoleRequest {
@@ -106,6 +107,10 @@ message ChangePasswordResponse {
 message ListAllUserRequest {
   int64 page = 1;
   int64 limit = 2;
+  credit.Plan plan = 3;
+  string email = 4;
+  ApproveStatus approveStatus = 5;
+  string apiId = 6;
 }
 
 message ListAllUserResponse {
@@ -165,13 +170,15 @@ message VerifyForgotPasswordResponse {
   bool success = 1;
 }
 
+enum ApproveStatus {
+  PickTheCorrectOne = 0;
+  Approved = 1;
+  Rejected = 2;
+  New = 3;
+}
+
 message ApproveUserRequest {
   string email = 1;
-  enum ApproveStatus {
-    New = 0;
-    Approved = 1;
-    Rejected = 2;
-  }
   ApproveStatus approve = 2;
 }
 
@@ -232,13 +239,6 @@ service UAAService {
   rpc ListAllUser(ListAllUserRequest) returns (ListAllUserResponse) {
     option (google.api.http) = {
       get: "/api/uaa/v1/users"
-    };
-  }
-
-  // List All Users Need To Be Approved
-  rpc ListUnapprovedUsers(ListAllUserRequest) returns (ListAllUserResponse) {
-    option (google.api.http) = {
-      get: "/api/uaa/v1/unapproved"
     };
   }
 
