@@ -53,6 +53,8 @@ message UserRequest {
   string apiId = 10;
   int64 status = 11;
   credit.Plan plan = 12;
+  ApproveStatus approved = 13;
+  bool verifiedEmail = 14;
 }
 
 message UserResponse {
@@ -70,6 +72,7 @@ message UserResponse {
   string refreshToken = 14;
   credit.Plan plan = 15;
   ApproveStatus approved = 16;
+  bool verifiedEmail = 17;
 }
 
 message ListRoleRequest {
