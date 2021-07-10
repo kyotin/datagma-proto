@@ -511,7 +511,11 @@ message Empty {
 
 }
 
-message LuminatiCallback {
+message LuminatiPersonCallback {
+  bytes data = 1;
+}
+
+message LuminatiCompanyCallback {
   bytes data = 1;
 }
 
@@ -624,9 +628,9 @@ service IngressService {
     };
   }
 
-  rpc HandlePersonCallback(LuminatiCallback) returns (Empty){}
+  rpc HandlePersonCallback(LuminatiPersonCallback) returns (Empty){}
 
-  rpc HandleCompanyCallback(LuminatiCallback) returns (Empty){}
+  rpc HandleCompanyCallback(LuminatiCompanyCallback) returns (Empty){}
 
   rpc StellaUpdate(StellaRequest) returns (StellaResponse){
     option (google.api.http) = {
