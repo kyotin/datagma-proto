@@ -92,6 +92,21 @@ message FullApiRequest {
   string companyKeyword = 16 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
     description: "To let us pick the correct company",
   }];
+
+  bool companyEmployees = 17 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "To get company employees. A successful response costs 5 credits",
+    default: "false"
+  }];
+
+  string employeeTitle = 18 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "It only work when companyEmployees turn on.",
+    default: ""
+  }];
+
+  int32 maxEmployeesReturn = 19 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+    description: "It only work when companyEmployees turn on. Tell me how many employees you want to get back",
+    default: "10"
+  }];
 }
 
 message FullApiResponse {
@@ -149,6 +164,7 @@ message Company {
   repeated string technologies = 7;
   repeated string technologiesCategories = 8;
   DeepTraffic deepTraffic = 9;
+  repeated BasicPerson employees = 10;
 }
 
 message CompanyYellowPage {
@@ -239,14 +255,14 @@ message FullCompany {
     FundingRoundsSummary funding_rounds_summary = 1;
 
     message TrafficRankHeadline {
-        int64 visits_latest_month = 1;
-        float visits_mom_pct = 2;
+      int64 visits_latest_month = 1;
+      float visits_mom_pct = 2;
     }
     TrafficRankHeadline traffic_rank_headline = 2;
 
     message SpentSummary {
       message SiteItSpend {
-       float value_usd = 1;
+        float value_usd = 1;
       }
       SiteItSpend site_it_spend = 1;
     }
@@ -270,7 +286,7 @@ message FullCompany {
       FoundedOn founded_on = 5;
 
       message Category {
-       string value = 1;
+        string value = 1;
       }
       repeated Category categories = 6;
 
@@ -286,7 +302,7 @@ message FullCompany {
 
     message OverviewFields2  {
       message Website {
-       string value = 1;
+        string value = 1;
       }
       Website            website = 1;
 
@@ -423,6 +439,7 @@ message BasicPerson {
   string extractedGender = 10;
   string dateDeNaissanceFormate = 11;
   string age = 12;
+  float score = 14;
 }
 
 message PremiumPerson {
@@ -533,7 +550,7 @@ message StellaRequest {
   string lastName = 2;
   string companyName = 3;
   string apiId = 4;
-  string jobTitle =5;
+  string jobTitle = 5;
   string email = 6;
 }
 
@@ -583,6 +600,9 @@ message CompanyEnrichRequest {
   bool companyInfo = 10;
   bool companyPhone = 11;
   bool deepTraffic = 12;
+  bool companyEmployees = 14;
+  string employeeTitle = 15;
+  int32 maxEmployeesReturn = 16;
 }
 
 service IngressService {
